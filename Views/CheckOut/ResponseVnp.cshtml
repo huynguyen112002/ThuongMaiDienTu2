@@ -1,0 +1,19 @@
+﻿@model List<string>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your View</title>
+</head>
+<body>
+    <div>
+        <h1>Danh sách nội dung:</h1>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

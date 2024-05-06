@@ -1,0 +1,50 @@
+﻿@model CuaHangCongNghe.Models.OrderViewModel
+@{
+    Layout = "LayoutAdmin";
+}
+
+<div class="col-md-8">
+    <h2>Danh sản phẩm trong đơn hàng</h2>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                @if (Model.ItemViewModels.Count > 0)
+                {
+                    @if (@Model.Status == 1)
+                    {
+                        <h5 class="card-title">Trạng thái:đã thanh toán</h5>
+                    }
+                    @if (@Model.Status == 2)
+                    {
+                        <h5 class="card-title">Trạng thái:Ship cod</h5>
+                    }
+                    @if (@Model.Status == 0)
+                    {
+                        <h5 class="card-title">Trạng thái:chưa thanh toán</h5>
+                    }
+                }
+                <h5 class="card-title">Tổng số lượng sản phẩm: @Model.FullAmount</h5>
+                <h5 class="card-title"> Tổng tiền:@Model.FullPrice </h5>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var itemViewModel in Model.ItemViewModels)
+        {
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card">
+                    <img src="@itemViewModel.Product.ImageUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Tên sản phẩm:@itemViewModel.Product.Name</h5>
+                        <h5 class="card-title">Số lượng:@itemViewModel.quantity</h5>
+                        <h5 class="card-title">Giá: @itemViewModel.Price</h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

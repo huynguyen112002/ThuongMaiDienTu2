@@ -1,0 +1,32 @@
+﻿@model CuaHangCongNghe.Models.ProductViewModel
+<link rel="stylesheet" href="~/css/product.css" />
+<div class="pagination">
+  <a href="/Home/Index/@Model.Id" > <p>Home</p></a> 
+</div>
+<!-- product section -->
+<section class="product-container">
+    <!-- left side -->
+    <div class="img-card">
+        <img src="@Model.ImageUrl" alt="" id="featured-image">
+        <!-- small img -->
+
+    </div>
+    <!-- Right side -->
+    <div class="product-info">
+        <h3>@Model.Name</h3>
+        <h5>Giá: @Model.Price</h5>
+        <h6>Số lượng:@Model.Stockquantity</h6>
+        <p>@Model.Description.</p>
+        
+
+
+        <div class="quantity">
+<a href="@Url.Action("Add", "Cart", new { id = Model.Id })" style="text-decoration: none;">
+    <h3>ADD TO CART</h3>
+</a>        </div>      
+    </div>
+</section>
+
+
+
+

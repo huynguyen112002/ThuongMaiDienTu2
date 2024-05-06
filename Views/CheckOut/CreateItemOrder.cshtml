@@ -1,0 +1,64 @@
+﻿@model CuaHangCongNghe.viewModel.UserOrderViewModel
+
+<div class="py-4 text-center">
+    <h1>xác nhận thông tin</h1>
+</div>
+   
+        <div class="col-md-8 order-md-1">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="User.NameUser">tên khách hàng</label>
+                    <input type="text" asp-for="User.NameUser" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Vui lòng nhập họ của người nhận.
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="mb-3">
+                <label asp-for="User.PhoneUser">Số điện thoại</label>
+                <input type="tel" asp-for="User.PhoneUser" class="form-control" required>
+                    <div class="invalid-feedback" style="width: 100%;">
+                        Vui lòng nhập số điện thoại của người nhận.
+                    </div>
+                </div>
+                <div class="mb-3">
+                <label asp-for="User.EmailUser">Email</label>
+                <input type="email" asp-for="User.EmailUser" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Vui lòng nhập email chính xác của người nhận.
+                    </div>
+                </div>
+                <div class="mb-3">
+                <label asp-for="User.AddressUser">Địa chỉ giao hàng</label>
+                <input type="text" asp-for="User.AddressUser" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Vui lòng nhập địa chỉ giao hàng của người nhận.
+                    </div>
+                </div>
+               
+                <div class="mb-3">
+                <input type="hidden" asp-for="Order.Status" value="@(0)" />
+                </div>
+                <div class="mb-3">
+                <input type="hidden" asp-for="Order.OrderDate" value="@(DateTime.Now)" />
+                </div>
+             
+
+
+
+                <div class="mb-3">
+                    @for (int i = 0; i < Model.Order.ItemViewModels.Count; i++)
+                    {
+                        var item = Model.Order.ItemViewModels[i];
+                        <input type="hidden" name="@("Items[" + i + "].Key")" value="@item.Product.Id" />
+                        <input type="hidden" name="@("Items[" + i + "].Value")" value="@item.quantity" />
+                    }
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" asp-controller="CheckOut" asp-action="SaveOrder">xác thực</button>
+            </form>
+        </div>
+    </div>
